@@ -9,7 +9,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 // The token of your bot - https://discordapp.com/developers/applications/me
-const token = 'NDQxMTI2MDYzNDE0OTY4MzQw.DcruPg.f2M-nBAHFVOtuXsKYtFMTfinEL0';
+const token = ''token here';
 
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
@@ -40,19 +40,21 @@ client.on('message', message => {
             // Just add any case commands if you want to
 			case 'kick':
 				var newChannel;
-				var punteeName = (args[0].substring(3, args[0].length - 1));
-				
+				var punteeName = (args[0].substring(args[0].length - 19, args[0].length - 1));
 				var puntee = server.members.get(punteeName);
-					
+				//	channel.send("" + args[0].substring(3, args[0].length - 1));
+					channel.send( 'Goodbye ' + args[0]);
 					server.createChannel('Purge', 'voice').then((newChannel) => 
 					{
-						channel.send( 'Goodbye ' + args[0]);
-						channels = server.channels.array();	
 						
-						puntee.setVoiceChannel(newChannel).then((puntee) =>
-						{
-							newChannel.delete();	
-						});
+							puntee.setVoiceChannel(newChannel).then((puntee) =>
+							{
+								channels = server.channels.array();
+								newChannel.delete().catch(O_o=>{}); 	
+							});
+							
+						
+						
 					});
 					
 				break;
